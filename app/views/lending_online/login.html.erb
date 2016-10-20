@@ -1,0 +1,8 @@
+<h1>Login</h1>
+<a href="/lending_online/register">Register</a>
+<form action="/lending_online/login" method="post">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  Email: <input type="text" name="email" value="">
+  Password: <input type="password" name="password" value="">
+  <input type="submit" value="Login">
+</form>

@@ -1,0 +1,26 @@
+<h1>Lender</h1>
+<a href="/lending_online/login">login</a>
+<form action="/lender/new" method="post">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  First Name: <input type="text" name="lender[first_name]" value="">
+  Last Name: <input type="text" name="lender[last_name]" value="">
+  Email: <input type="text" name="lender[email]" value="">
+  Password: <input type="password" name="lender[password]" value="">
+  Confirm Password: <input type="password" name="lender[password_confirmation]" value="">
+  Money: <input type="number" name="lender[money]" value="0">
+  <input type="submit" value="Register">
+</form>
+<h1>Borrower</h1>
+<a href="/lending_online/login">login</a>
+<form action="/borrower/new" method="post">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  First Name: <input type="text" name="borrower[first_name]" value="">
+  Last Name: <input type="text" name="borrower[last_name]" value="">
+  Email: <input type="text" name="borrower[email]" value="">
+  Password: <input type="password" name="borrower[password]" value="">
+  Confirm Password: <input type="password" name="borrower[password_confirmation]" value="">
+  Need Money For: <input type="text" name="borrower[project]" value=""><br>
+  Description: <textarea name="borrower[desc]" rows="8" cols="40"></textarea>
+  Ammount Needed: <input type="number" name="borrower[ammount_needed]" value="100">
+  <input type="submit" value="Register">
+</form>

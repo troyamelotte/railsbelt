@@ -1,0 +1,32 @@
+<a href="/lending_online/logout">Logout</a>
+<h4>Name: <%=@borrower.first_name%> <%=@borrower.last_name%></h4>
+<h4>Ammount Needed: $<%=@borrower.ammount_needed%></h4>
+<h4>Ammount Raised: $<%=@borrower.ammount_raised%></h4>
+
+<h3>List of people who lent you money</h3>
+<table>
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Email
+    </th>
+    <th>
+      Ammount Lent
+    </th>
+  </tr>
+  <%@borrower.borrowing_from.each do |lender|%>
+  <tr>
+    <td>
+      <%=lender.first_name%> <%=lender.last_name%>
+    </td>
+    <td>
+      <%=lender.email%>
+    </td>
+    <td>
+      $<%=lender.lendings.find_by_borrower_id(@borrower.id).ammount%>
+    </td>
+  </tr>
+  <%end%>
+</table>

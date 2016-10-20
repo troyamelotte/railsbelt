@@ -1,0 +1,98 @@
+<a href="/lending_online/logout">Logout</a>
+<h4>Name: <%=@lender.first_name%> <%=@lender.last_name%></h4>
+<h4>Account Balance: $<%=@lender.money%></h4>
+
+<h3>List of people in need of help:</h3>
+<table>
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Need Money for
+    </th>
+    <th>
+      Reason for loan
+    </th>
+    <th>
+      Ammount Needed
+    </th>
+    <th>
+      Ammount Raised
+    </th>
+    <th>
+      Action
+    </th>
+  </tr>
+  <%@all_borrowers.each do |borrower|%>
+  <tr>
+    <td>
+      <%=borrower.first_name%> <%=borrower.last_name%>
+    </td>
+    <td>
+      <%=borrower.project%>
+    </td>
+    <td>
+      <%=borrower.desc%>
+    </td>
+    <td>
+      $<%=borrower.ammount_needed%>
+    </td>
+    <td>
+      $<%=borrower.ammount_raised%>
+    </td>
+    <td>
+      <form action="/lend/<%=borrower.id%>" method="post">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <input type="number" name="ammount" value="25">
+        <input type="submit" value="lend">
+      </form>
+    </td>
+  </tr>
+  <%end%>
+</table>
+<h3>List of people you lend money to:</h3>
+<table>
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Need Money For
+    </th>
+    <th>
+      Reason for loan
+    </th>
+    <th>
+      Ammount Needed
+    </th>
+    <th>
+      Ammount Raised
+    </th>
+    <th>
+      Ammount Lent
+    </th>
+  </tr>
+  <%@lender.lending_to.each do |borrower|%>
+  <tr>
+    <td>
+      <%=borrower.first_name%> <%=borrower.last_name%>
+    </td>
+    <td>
+      <%=borrower.project%>
+    </td>
+    <td>
+      <%=borrower.desc%>
+    </td>
+    <td>
+      $<%=borrower.ammount_needed%>
+    </td>
+    <td>
+      $<%=borrower.ammount_raised%>
+    </td>
+    <td>
+      $<%=borrower.lendings.find_by_lender_id(@lender.id).ammount%>
+    </td>
+  </tr>
+  <%end%>
+</table>
